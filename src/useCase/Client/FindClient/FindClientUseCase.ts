@@ -1,4 +1,4 @@
-import { Client } from "../../../enitities/Client";
+import { Client } from "../../../entities/Client";
 import { IClientParams } from "../interface";
 import { IClientRepositories } from "../../../repositories/client/IClientRepositories";
 

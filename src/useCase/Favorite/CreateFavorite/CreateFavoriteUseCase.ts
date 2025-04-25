@@ -1,4 +1,4 @@
-import { Favorite } from "../../../enitities/Favorite";
+import { Favorite } from "../../../entities/Favorite";
 import { IFavoriteRepositories } from "../../../repositories/favorite/IFavoriteRepositories";
 import { ObjectId } from "typeorm";
 import { Product } from "../../../utils/types/products";

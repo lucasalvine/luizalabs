@@ -1,11 +1,15 @@
-import { Client } from "../../../entities/Client";
-import { IClient } from "../interface";
-import { IClientRepositories } from "../../../repositories/client/IClientRepositories";
+import { Client } from "../../entities/Client";
+import { IClientRepositories } from "../../repositories/IClientRepositories";
+
+interface IClientRequest {
+  name: string;
+  email: string;
+}
 
 export class CreateClientUseCase {
   constructor(private clientRepository: IClientRepositories) {}
 
-  async execute({name, email}: IClient): Promise<Client | undefined> {
+  async execute({name, email}: IClientRequest): Promise<Client | undefined> {
     const alreadyExist = await this.clientRepository.findByEmail(email);
 
     if (alreadyExist) {

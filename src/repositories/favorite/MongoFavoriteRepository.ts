@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../infra/database/dataSource";
-import { Favorite } from "../../enitities/Favorite";
+import { Favorite } from "../../entities/Favorite";
 import { IFavoriteRepositories } from "./IFavoriteRepositories";
 import { ObjectId } from "typeorm";
 

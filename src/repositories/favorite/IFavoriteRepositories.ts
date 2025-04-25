@@ -1,4 +1,4 @@
-import { Favorite } from "../../enitities/Favorite";
+import { Favorite } from "../../entities/Favorite";
 import { ObjectId } from "typeorm";
 
 export interface IFavoriteRepositories {
