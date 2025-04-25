@@ -1,6 +1,8 @@
 import { AppDataSource } from "../../infra/database/dataSource";
 import { Client } from "../../enitities/Client";
+import { IClientParams } from "../../useCase/Client/interface";
 import { IClientRepositories } from "./IClientRepositories";
+import { ObjectId } from "typeorm";
 
 export class MongoClientRepository implements IClientRepositories {
   private repository = AppDataSource.getMongoRepository(Client);
@@ -11,5 +13,28 @@ export class MongoClientRepository implements IClientRepositories {
 
   async findByEmail(email: string): Promise<Client | null> {
     return this.repository.findOne({ where: { email } });
+  }
+
+  async find(params: IClientParams): Promise<Client[]> {
+    const { id, name, email } = params;
+    const query: { _id?: ObjectId; name?: { $regex: RegExp }; email?: { $regex: RegExp } } = {};
+
+    if (id) {
+      try {
+        query._id = new ObjectId(id);
+      } catch (error) {
+        return [];
+      }
+    }
+
+    if (name) {
+      query.name = { $regex: new RegExp(name, 'i') };
+    }
+
+    if (email) {
+      query.email = { $regex: new RegExp(email, 'i') };
+    }
+
+    return this.repository.find({ where: query });
   }
 }
