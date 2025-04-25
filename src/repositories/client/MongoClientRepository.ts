@@ -41,4 +41,22 @@ export class MongoClientRepository implements IClientRepositories {
   async deleteById(id: string): Promise<void> {
     await this.repository.deleteOne({ _id: new ObjectId(id) });
   }
+
+  async findById(id: string): Promise<Client | null> {
+    try {
+      return this.repository.findOne({ where: { id: new ObjectId(id) } });
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
+
+  async update(client: Client): Promise<Client> {
+    try {
+      return this.repository.save(client);
+    } catch (e) {
+      console.error(e);
+      throw new Error("Failed to update client");
+    }
+  }
 }

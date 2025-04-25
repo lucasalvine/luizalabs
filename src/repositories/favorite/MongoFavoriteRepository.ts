@@ -8,9 +8,13 @@ export class MongoFavoriteRepository implements IFavoriteRepositories {
 
   async create(favorite: Favorite): Promise<Favorite> {
     return this.repository.save(favorite);
-  }
+  };
 
   async findByClientId(clientId: ObjectId): Promise<Favorite | null> {
     return this.repository.findOne({ where: { clientId } });
-  }
-}
+  };
+
+  async update(favorite: Favorite): Promise<Favorite> {
+      return this.repository.save(favorite);
+  };
+};

@@ -2,11 +2,13 @@ import { CreateClientController } from "../useCase/Client/CreateClient/CreateCli
 import { DeleteClientController } from "../useCase/Client/DeleteClient/DeleteClientController";
 import { FindClientsController } from "../useCase/Client/FindClient/FindClientController";
 import { Router } from "express";
+import { UpdateClientController } from "../useCase/Client/UpdateClient/UpdateClientController";
 
 const clientRoute = Router();
 const createClient = new CreateClientController();
 const findClients = new FindClientsController();
 const deleteClient = new DeleteClientController();
+const updateClient = new UpdateClientController();
 
 
 clientRoute.post('/', async (req, res) => {
@@ -33,5 +35,12 @@ clientRoute.delete('/', async (req, res) => {
 	}
 });
 
+clientRoute.put('/:id', async (req, res) => {
+	try {
+		await updateClient.handle(req, res);
+	} catch (err) {
+		res.status(500).send({ err: 'Internal Server Error' });
+	}
+});
 
 export default clientRoute;

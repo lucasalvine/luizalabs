@@ -12,5 +12,5 @@ export class Favorite {
   clientId: ObjectId | undefined;
 
   @Column()
-  products: Product[] = [];
+  favorites: Product[] = [];
 }

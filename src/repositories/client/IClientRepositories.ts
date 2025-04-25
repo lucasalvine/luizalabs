@@ -6,4 +6,6 @@ export interface IClientRepositories {
   findByEmail(email: string): Promise<Client | null>;
   find(params: IClientParams): Promise<Client[]>
   deleteById(id: string): Promise<void>;
+  findById(id: string): Promise<Client | null>;
+  update(client: Client): Promise<Client>;
 }
