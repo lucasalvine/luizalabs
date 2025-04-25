@@ -1,5 +1,6 @@
-import { Column, Entity, Index, ObjectId, ObjectIdColumn } from "typeorm";
+import { Column, Entity, Index, ObjectIdColumn } from "typeorm";
 
+import { ObjectId } from "mongodb";
 import { Product } from "../utils/types/products";
 
 @Entity('favorites')
@@ -9,7 +10,7 @@ export class Favorite {
   id: ObjectId | undefined;
 
   @Column()
-  clientId: ObjectId | undefined;
+  clientId: string | undefined;
 
   @Column()
   favorites: Product[] = [];

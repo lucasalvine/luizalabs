@@ -1,11 +1,10 @@
 import { Favorite } from "../../../entities/Favorite";
 import { IFavoriteRepositories } from "../../../repositories/favorite/IFavoriteRepositories";
-import { ObjectId } from "typeorm";
 import { Product } from "../../../utils/types/products";
 import { productsMock } from "../../../mocks/productMock";
 
 interface IFavoriteRequest {
-  clientId: ObjectId;
+  clientId: string;
   products: Product[];
 }
 

@@ -1,9 +1,8 @@
 import { Favorite } from "../../../entities/Favorite";
 import { IFavoriteRepositories } from "../../../repositories/favorite/IFavoriteRepositories";
-import { ObjectId } from "typeorm";
 
 interface IRemoveFavoritesRequest {
-  clientId: ObjectId;
+  clientId: string;
   productIds: string[];
 }
 

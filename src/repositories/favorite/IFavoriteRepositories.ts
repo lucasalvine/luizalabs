@@ -1,8 +1,11 @@
+import { IFavoriteParams, PaginatedFavorites } from "../../useCase/Favorite/interface";
+
 import { Favorite } from "../../entities/Favorite";
-import { ObjectId } from "typeorm";
 
 export interface IFavoriteRepositories {
   create(favorite: Favorite): Promise<Favorite>;
-  findByClientId(clientId: ObjectId): Promise<Favorite | null>;
+  findByClientId(clientId: string): Promise<Favorite | null>;
   update(products: Favorite): Promise<Favorite>;
+  find(params: IFavoriteParams): Promise<Favorite[]>
+  findPaginatedFavorites(page: number, limit: number, clientId?: string): Promise<PaginatedFavorites | null>
 }
