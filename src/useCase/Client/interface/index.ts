@@ -8,3 +8,8 @@ export interface IClientParams {
   name?: string,
   email?: string,
 }
+
+export interface IUpdateClient {
+  name?: string;
+  email?: string;
+}

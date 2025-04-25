@@ -14,15 +14,16 @@ export class CreateFavoriteUseCase {
 
   async execute({ clientId, products }: IFavoriteRequest): Promise<Favorite | undefined> {
     const existFavorites = await this.favoriteRepository.findByClientId(clientId);
-    const validateProducts = this.checkProducts(products);
+    const validatedProducts = this.checkProducts(products);
 
-    if (validateProducts.length === 0) {
+    if (validatedProducts.length === 0) {
       throw new Error('Products not found');
     }
 
     if (existFavorites) {
       const existingProductIds = new Set(existFavorites.favorites.map(p => p.id));
-      const newProducts = products.filter(p => !existingProductIds.has(p.id));
+      
+      const newProducts = validatedProducts.filter(p => !existingProductIds.has(p.id));
 
       if (newProducts.length === 0) {
         throw new Error("No new products to add or products already exist");
@@ -35,16 +36,16 @@ export class CreateFavoriteUseCase {
 
     const favorites = new Favorite();
     favorites.clientId = clientId;
-    favorites.favorites = products;
+    favorites.favorites = validatedProducts;
 
     return this.favoriteRepository.create(favorites); 
   };
 
   private checkProducts(products: Product[]): Product[] {
-    const idsSet = new Set(products.map(item => String(item.id)));
-  
+    const requestedIds = new Set(products.map(p => String(p.id)));
+
     return productsMock.filter(product =>
-      idsSet.has(String(product.id))
+      requestedIds.has(String(product.id))
     );
-  };
+  }
 }

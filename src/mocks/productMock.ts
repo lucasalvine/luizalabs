@@ -1,4 +1,4 @@
-import { Product } from '../entities/Product';
+import { Product } from "../utils/types/products";
 
 export const productsMock: Product[] = [
   {

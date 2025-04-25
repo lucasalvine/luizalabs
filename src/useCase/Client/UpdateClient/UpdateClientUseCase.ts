@@ -1,7 +1,6 @@
 import { Client } from "../../../enitities/Client";
-// src/useCase/Client/UpdateClient/UpdateClientUseCase.ts
 import { IClientRepositories } from "../../../repositories/client/IClientRepositories";
-import { IUpdateClient } from "../../../utils/types/IUpdateClient";
+import { IUpdateClient } from "../interface";
 
 export class UpdateClientUseCase {
   constructor(private clientRepository: IClientRepositories) {}
