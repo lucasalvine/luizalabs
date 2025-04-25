@@ -1,5 +1,3 @@
-import { ObjectId } from "typeorm";
-
 export interface IClient {
   name: string,
   email: string,

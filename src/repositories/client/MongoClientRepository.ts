@@ -37,4 +37,8 @@ export class MongoClientRepository implements IClientRepositories {
 
     return this.repository.find({ where: query });
   }
+
+  async deleteById(id: string): Promise<void> {
+    await this.repository.deleteOne({ _id: new ObjectId(id) });
+  }
 }
