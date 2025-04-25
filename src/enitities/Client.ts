@@ -1,5 +1,7 @@
 import { Column, Entity, Index, ObjectId, ObjectIdColumn } from 'typeorm';
 
+import { IsEmail } from 'class-validator';
+
 @Entity('clients')
 export class Client {
   @ObjectIdColumn()
@@ -10,5 +12,6 @@ export class Client {
 
   @Column()
   @Index({ unique: true })
+  @IsEmail()
   email: string = '';
 }
