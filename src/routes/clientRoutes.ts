@@ -1,10 +1,10 @@
-import { CreateClientController } from "../useCase/CreateClient/CreateClientController";
+import { CreateClientController } from "../useCase/Client/CreateClient/CreateClientController";
 import { Router } from "express";
 
-const route = Router();
+const clientRoute = Router();
 const createClient = new CreateClientController();
 
-route.post('/clients', async (req, res) => {
+clientRoute.post('/', async (req, res) => {
 	try {
 		await createClient.handle(req, res);
 	} catch (err) {
@@ -12,4 +12,4 @@ route.post('/clients', async (req, res) => {
 	}
 });
 
-export default route;
+export default clientRoute;

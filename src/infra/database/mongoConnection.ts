@@ -1,18 +1,18 @@
-import { Client } from '../../enitities/Client';
-import { createConnection } from 'typeorm';
+import { AppDataSource } from './dataSource';
 import dotenv from 'dotenv';
 dotenv.config();
 
 
-console.log('URL', process.env.MONGO_URL)
-
 export const connectDatabase = async () => {
-  await createConnection({
-    type: 'mongodb',
-    url: process.env.MONGO_URL,
-    entities: [Client],
-    database: 'local',
+  if (!AppDataSource.isInitialized) {
+    await AppDataSource.initialize();
+  }
+
+  const mongoManager = AppDataSource.mongoManager;
+
+  await mongoManager.createCollectionIndex('favorites', {
+    'products.id': 1,
   });
 
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB with indexes');
 };

@@ -1,17 +1,16 @@
 import 'reflect-metadata';
 
-import clientRoutes from './routes/clientRoutes';
 import { connectDatabase } from './infra/database/mongoConnection';
 import dotenv from 'dotenv';
 import express from 'express';
+import routes from './routes';
 
 dotenv.config();
 
-console.log('MONGO_URL:', process.env.MONGO_URL); // <- teste aqui
-
 const app = express();
 app.use(express.json());
-app.use(clientRoutes);
+app.use(routes);
+
 
 connectDatabase();
 

@@ -1,5 +1,5 @@
-import { Client } from "../../enitities/Client";
-import { IClientRepositories } from "../../repositories/IClientRepositories";
+import { Client } from "../../../enitities/Client";
+import { IClientRepositories } from "../../../repositories/client/IClientRepositories";
 
 interface IClientRequest {
   name: string;

@@ -6,9 +6,9 @@ export class Client {
   id: ObjectId | undefined;
 
   @Column()
-  name: string | undefined;
+  name: string = '';
 
   @Column()
   @Index({ unique: true })
-  email: string | undefined;
+  email: string = '';
 }

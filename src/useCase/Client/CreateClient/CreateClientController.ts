@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { CreateClientUseCase } from "./CreateClientUseCase";
-import { MongoClientRepository } from "../../repositories/MongoClientRepository";
+import { MongoClientRepository } from '../../../repositories/client/MongoClientRepository';
 
 export class CreateClientController {
   async handle(req: Request, res: Response) {
